@@ -34,9 +34,16 @@ import {
   responsiveBar,
   legendBar
 } from "variables/Variables.jsx";
+import { _authCheck } from "utils/authCheck";
 
 
 class Dashboard extends Component {
+
+  componentDidMount(){
+    if(!_authCheck()){
+      this.props.history.push('/login')
+    }
+  }
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {

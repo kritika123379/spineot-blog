@@ -21,6 +21,7 @@ import NotificationSystem from "react-notification-system";
 import { style } from "variables/Variables.jsx";
 import { LOGIN_SUCCESS } from "redux/actions/types";
 import history from "customHistory";
+import { _authCheck } from "utils/authCheck";
 
 class Login extends Component {
   state = {
@@ -31,6 +32,9 @@ class Login extends Component {
 
   componentDidMount(){
     this.setState({ _notificationSystem: this.refs.notificationSystem });
+    if(!!_authCheck()){
+      this.props.history.push('/admin/dashboard')
+    }
   }
   _onSubmit = e => {
     e.preventDefault();
