@@ -64,12 +64,12 @@ class Sidebar extends Component {
               <img src={logo} alt="logo_image" />
             </div>
           </a>
-          <a
+          <NavLink to='/'
             href="https://www.creative-tim.com?ref=lbd-sidebar"
             className="simple-text logo-normal"
           >
-            SPINEOR 
-          </a>
+            SPINEOR
+          </NavLink>
         </div>
         <div className="sidebar-wrapper">
           <ul className="nav">
