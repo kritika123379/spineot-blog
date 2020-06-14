@@ -40,7 +40,7 @@ class UserProfile extends Component {
           <Row>
             <Col md={8}>
               <Card
-                title="Edit Profile"
+                title="Login"
                 content={
                   <form>
                     <FormInputs
