@@ -42,14 +42,7 @@ const dashboardRoutes = [
     icon: "pe-7s-note2",
     component: TableList,
     layout: "/admin"
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "pe-7s-user",
-    component: Login,
-    layout: "/admin"
-  },
+  }
   
   // {
   //   path: "/typography",
