@@ -18,6 +18,7 @@
 import Dashboard from "views/Dashboard.jsx";
 import TableList from "views/TableList.jsx";
 import UserProfile from "views/UserProfile.jsx";
+import Login from "views/Login";
 /*
 
 import Typography from "views/Typography.jsx";
@@ -46,9 +47,10 @@ const dashboardRoutes = [
     path: "/login",
     name: "Login",
     icon: "pe-7s-user",
-    component: UserProfile,
+    component: Login,
     layout: "/admin"
   },
+  
   // {
   //   path: "/typography",
   //   name: "Typography",

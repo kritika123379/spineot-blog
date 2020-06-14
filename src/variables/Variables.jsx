@@ -578,7 +578,14 @@ var legendBar = {
   names: ["Tesla Model S", "BMW 5 Series"],
   types: ["info", "danger"]
 };
-
+//for inputs 
+const belowStyle = {
+  float: "right",
+  paddingTop: "0px"
+}
+const categoryStyle ={
+  color: "blue",
+}
 module.exports = {
   style, // For notifications (App container and Notifications view)
   thArray,
@@ -594,6 +601,7 @@ module.exports = {
   optionsBar,
   responsiveBar,
   legendBar ,
-  
+  belowStyle,
+  categoryStyle
   // For charts (Dashboard view)
 };

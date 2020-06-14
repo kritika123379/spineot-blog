@@ -17,6 +17,7 @@
 */
 import React, { Component } from "react";
 import { FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap";
+import { belowStyle} from "variables/Variables";
 
 function FieldGroup({ label, ...props }) {
   return (
@@ -34,6 +35,7 @@ export class FormInputs extends Component {
       row.push(
         <div key={i} className={this.props.ncols[i]}>
           <FieldGroup {...this.props.properties[i]} />
+          <span style={belowStyle}> <a href="#">{this.props.text}</a></span>
         </div>
       );
     }

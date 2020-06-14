@@ -779,6 +779,11 @@ body > .navbar-collapse[data-color="purple"]:after {
   color: #DDDDDD;
   opacity: 1;
   filter: alpha(opacity=100); }
+  
+  .below{
+    float: right;
+  padding-top: 16px;
+  }
 
 .form-control {
   background-color: #FFFFFF;

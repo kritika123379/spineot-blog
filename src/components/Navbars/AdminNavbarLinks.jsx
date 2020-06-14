@@ -17,6 +17,7 @@
 */
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 class AdminNavbarLinks extends Component {
   render() {
@@ -70,7 +71,12 @@ class AdminNavbarLinks extends Component {
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
           </NavDropdown>
           <NavItem eventKey={3} href="#">
-            Log out
+          <NavLink
+          to="/login"
+          className="nav-link"
+          activeClassName="active"
+          >  Log out
+        </NavLink>
           </NavItem>
         </Nav>
       </div>
