@@ -42,7 +42,7 @@ class Admin extends Component {
     };
   }
   handleNotificationClick = position => {
-    var color = Math.floor(Math.random() * 4 + 1);
+    var color = 1;
     var level;
     switch (color) {
       case 1:
@@ -126,7 +126,7 @@ class Admin extends Component {
   componentDidMount() {
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
-    var color = Math.floor(Math.random() * 4 + 1);
+    var color = 1;
     var level;
     switch (color) {
       case 1:
@@ -148,8 +148,7 @@ class Admin extends Component {
       title: <span data-notify="icon" className="pe-7s-gift" />,
       message: (
         <div>
-          Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
-          every web developer.
+          Welcome to <b>Spineor Web Services Dashboard</b>
         </div>
       ),
       level: level,
@@ -185,7 +184,7 @@ class Admin extends Component {
           />
           <Switch>{this.getRoutes(routes)}</Switch>
           <Footer />
-          <FixedPlugin
+          {/* <FixedPlugin
             handleImageClick={this.handleImageClick}
             handleColorClick={this.handleColorClick}
             handleHasImage={this.handleHasImage}
@@ -194,7 +193,7 @@ class Admin extends Component {
             mini={this.state["mini"]}
             handleFixedClick={this.handleFixedClick}
             fixedClasses={this.state.fixedClasses}
-          />
+          /> */}
         </div>
       </div>
     );
