@@ -7,8 +7,10 @@ export const _readToken = token => {
 
 export const _getUser = () => {
     const token = localStorage.getItem('token');
-    const {user} = _readToken(token);
-    return user;
+    if(!!token){
+        const {user} = _readToken(token);
+        return user;
+    }
 }
 
 export const _authCheck = () => {

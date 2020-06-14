@@ -57,7 +57,7 @@ class AdminNavbarLinks extends Component {
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={1} href="#">
-            {_getUser().name}
+            {!!_getUser() && _getUser().name}
           </NavItem>
           {/* <NavDropdown
             eventKey={2}
