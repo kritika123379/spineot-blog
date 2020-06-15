@@ -9,7 +9,6 @@ export const registrationService = (data) => {
 }
 
 
-
 export const loginService = (data) => {
   return request({
     url: '/login',

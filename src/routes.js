@@ -1,8 +1,11 @@
 
 import Dashboard from "views/Dashboard.jsx";
 import TableList from "views/TableList.jsx";
-import UserProfile from "views/UserProfile.jsx";
+
 import Login from "views/Login";
+import Currentusers from "views/Currentusers";
+import Icons from "views/Icons.jsx";
+import Maps from "views/Maps.jsx";
 /*
 
 import Typography from "views/Typography.jsx";
@@ -25,29 +28,28 @@ const dashboardRoutes = [
     icon: "pe-7s-note2",
     component: TableList,
     layout: "/admin"
+  },
+  {
+    path: "/currentuser",
+    name: "Current Users",
+    icon: "pe-7s-news-paper",
+    component: Currentusers,
+    layout: "/admin"
+  },
+  {
+    path: "/icons",
+    name: "Blogs",
+    icon: "pe-7s-science",
+    component: Icons,
+    layout: "/blogs"
+  },
+  {
+    path: "/maps",
+    name: "Services",
+    icon: "pe-7s-bell",
+    component: Maps,
+    layout: "/services"
   }
-  
-  // {
-  //   path: "/typography",
-  //   name: "Typography",
-  //   icon: "pe-7s-news-paper",
-  //   component: Typography,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/icons",
-  //   name: "Icons",
-  //   icon: "pe-7s-science",
-  //   component: Icons,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/maps",
-  //   name: "Maps",
-  //   icon: "pe-7s-map-marker",
-  //   component: Maps,
-  //   layout: "/admin"
-  // },
   // {
   //   path: "/notifications",
   //   name: "Notifications",

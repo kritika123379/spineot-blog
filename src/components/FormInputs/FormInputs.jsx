@@ -18,6 +18,7 @@
 import React, { Component } from "react";
 import { FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap";
 import { belowStyle} from "variables/Variables";
+import {NavLink} from "react-router-dom";
 
 function FieldGroup({ label, ...props }) {
   return (
@@ -35,7 +36,14 @@ export class FormInputs extends Component {
       row.push(
         <div key={i} className={this.props.ncols[i]}>
           <FieldGroup {...this.props.properties[i]} />
-          <span style={belowStyle}> <a href="#">{this.props.text}</a></span>
+          <span style={belowStyle}> 
+          <NavLink
+          to={this.props.path}
+          className="nav-link"
+          activeClassName="active"
+          > {this.props.text} 
+        </NavLink>
+        </span>
         </div>
       );
     }

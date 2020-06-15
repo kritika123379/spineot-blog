@@ -52,45 +52,6 @@ class TableList extends Component {
                 }
               />
             </Col>
-
-            <Col md={12}>
-              <Card
-                plain
-                title="Striped Table with Hover"
-                category="Here is a subtitle for this table"
-                ctTableFullWidth
-                ctTableResponsive
-                content={
-                  <Table hover>
-                    <thead>
-                      <tr>
-                        {thArray.map((prop, key) => {
-                          return <th key={key}>{prop}</th>;
-                        })}
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {userData.map((item,key)=>{
-                      return (
-                        <tr key={item._id}>
-                        <td>{item.name}</td>
-                        <td>{item._id}</td>
-                        <td>{item.email}</td>
-                        <td>{item.phone}</td>
-                        <td>{item.service}</td>
-                        <td><Moment>{item.createdAt}</Moment></td>
-                        <td><Moment>{item.updatedAt}</Moment></td>
-                        </tr>
-                      )
-                    })}
-                    </tbody>
-                  </Table>
-                 
-                }
-              
-              />
-            
-            </Col>
           </Row>
         </Grid>
       </div>
@@ -102,7 +63,6 @@ const mapStateToProps = state => {
   return{
     userData: state.fetchdata.fetch_Data,
     error: state.fetchdata.fetch_Error,
-    type: state.fetchdata.type,
     thArray:state.fetchdata.thArray
   }
 

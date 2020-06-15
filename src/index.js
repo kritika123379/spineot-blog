@@ -15,6 +15,7 @@ import AdminLayout from "layouts/Admin.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
 import Login from "views/Login";
+import Forgotpassword from "views/Forgotpassword";
 
 
 ReactDOM.render(
@@ -23,6 +24,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
+      <Route path="/forgotPassword" render={props => <Forgotpassword {...props} />} />
       <Redirect from="/" to="/admin/dashboard" />
      
     </Switch>

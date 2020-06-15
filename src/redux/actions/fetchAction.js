@@ -1,5 +1,6 @@
 import * as types from "./types";
 import axios from "axios";
+//import config from "../config";
 
 
 export function fetchError(payload) {
@@ -12,7 +13,8 @@ export function fetchSuccess(payload) {
 export const fetchTable = () => {
     return dispatch => {
       return axios
-        .get('https://sp.plusmore.com/api/queries')
+      //.get(`${config.API_URL}/api/queries`)
+         .get('https://sp.plusmore.com/api/queries')
         .then(response => {
           console.log(response);
           dispatch(fetchSuccess(response.data));

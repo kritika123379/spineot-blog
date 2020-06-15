@@ -251,6 +251,11 @@ const tdArray = [
   ["Mongo user", "5ecb9fc9ac11800745c45709","jalajgoel45@gmail.com", "1234567890", "MOBILE SERVICES",]
   
 ];
+const thUserArray =["Created at","Name ","Email","Role","Action"]
+const tdUserArray = [
+  ["2020-05-25T10:36:57.984Z", "Mongo user","jalajgoel45@gmail.com","MOBILE SERVICES","work"]
+  
+];
 // ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
   // ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
   // ["4", "Philip Chaney", "$38,735", "Korea, South", "Overland Park"],
@@ -602,6 +607,8 @@ module.exports = {
   responsiveBar,
   legendBar ,
   belowStyle,
-  categoryStyle
+  categoryStyle,
+  thUserArray,
+  tdUserArray
   // For charts (Dashboard view)
 };

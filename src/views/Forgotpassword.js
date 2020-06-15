@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import {
   Grid,
   Row,
-  Col,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-
+  Col
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
@@ -15,47 +11,58 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 /*redux */
 import { loginUserAction } from '../redux/actions/userActions';
-import avatar from "assets/img/faces/face-3.jpg";
 import { connect } from "react-redux";
 import { LOGIN_LOADING } from "redux/actions/types";
 import NotificationSystem from "react-notification-system";
 import { style } from "variables/Variables.jsx";
-import { LOGIN_SUCCESS } from "redux/actions/types";
-import history from "customHistory";
 
-class Login extends Component {
+
+
+class Forgotpassword extends Component {
   state = {
     email: '',
     password: '',
+    newpassword:'',
     _notificationSystem: null
   }
-
   componentDidMount(){
     this.setState({ _notificationSystem: this.refs.notificationSystem });
   }
+  
   _onSubmit = e => {
     e.preventDefault();
-    const { email, password } = this.state;
-    this.props.loginUserAction({email, password})
+    const { email, password ,newpassword} = this.state;
+    this.validatePassword(email,password,newpassword);
+    
   }
+  validatePassword = (email,pass,newpass) => {
+    console.log(pass,newpass);
+  
+    let isValid =true;
+
+    if(pass == null && newpass == null && email == null){
+        isValid = false
+        this._addNotification('Please Enter Values to reset Password....', 'error')
+    }
+    if(pass !== newpass){
+        isValid=false
+        this._addNotification('Password and ConfirmPassword donot match ...', 'error')
+    }
+    if(pass.maxLength !== newpass.maxLength){
+        isValid= false
+        this._addNotification('Password is too weak...', 'error')
+    }
+    return isValid
+  
+  }
+
 
   _setValue = ({target: {name, value}}) => {
     this.setState({[name]: value})
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.authUser !== nextProps.authUser){
-      if(!!nextProps.authUser && !!nextProps.authUser.type){
-        if(nextProps.authUser.type === LOGIN_LOADING){
-          this._addNotification('Logging in, please wait...', 'info')
-        }else if(nextProps.authUser.type === LOGIN_SUCCESS){
-          this._addNotification(nextProps.authUser.message, 'success')
-          this.props.history.push("/admin/dashboard")
-        }else{
-          this._addNotification(nextProps.authUser.message, 'error')
-        }
-      }
-    }
+   
   }
 
   _addNotification = (message, type) => {
@@ -73,19 +80,18 @@ class Login extends Component {
     });
   };
   render() {
-    const { email, password } = this.state;
+    const { email, password,newpassword } = this.state;
     const { authUser: {type, data} } = this.props
     return (
       <div className="content">
         <Grid fluid>
-          <Row>
-            <NotificationSystem ref="notificationSystem" style={style} />
-
-            <Col md={12} className="bg-dark">
+          <Row> 
+          <NotificationSystem ref="notificationSystem" style={style} />
+            <Col md={12} className="bg-light">
               <div  className="center-container width_50">
                 <Card
                   title="Spineor Web Services"
-                  category="welcome"
+                  category="forgot Password"
                   content={
                     <form onSubmit={this._onSubmit.bind(this)}>
                       <FormInputs
@@ -103,23 +109,37 @@ class Login extends Component {
                         ]}
                       />
                       <FormInputs
+                      ncols={["col-md-5"]}
+                      properties={[
+                        {
+                          label: "Enter New password",
+                          type: "password",
+                          bsClass: "form-control",
+                          placeholder: "Enter New Password",
+                          onChange: this._setValue.bind(this),
+                          value: password,
+                          name: 'password'
+                        }
+                      ]}
+                    />
+                      <FormInputs
                         ncols={["col-md-5"]}
-                        text="Forgot Password"
-                        path="/forgotPassword"
+                        text=" Login again ?"
+                        path="/Login"
                         properties={[
                           {
-                            label: "Password",
+                            label: "Confirm Password",
                             type: "password",
                             bsClass: "form-control",
-                            placeholder: "*******",
+                            placeholder: "Confirm Password",
                             onChange: this._setValue.bind(this),
-                            value: password,
-                            name: 'password'
+                            value: newpassword,
+                            name: 'newpassword'
                           },
                         ]}
                       />
-                      <Button bsStyle="danger" pullLeft fill type="submit" disabled={type === LOGIN_LOADING}>
-                        Login
+                      <Button bsStyle="primary" pullLeft fill type="submit" disabled={type === LOGIN_LOADING}>
+                       Confirm Password 
                       </Button>
                       <div className="clearfix" />
                     </form>
@@ -129,7 +149,7 @@ class Login extends Component {
             </Col>
           </Row>
         </Grid>
-      </div>
+        </div>
     );
   }
 }
@@ -140,4 +160,4 @@ const mapStateToProps = ({authUser}) => {
   }
 }
 
-export default connect(mapStateToProps, { loginUserAction })(Login);
+export default connect(mapStateToProps, { loginUserAction })(Forgotpassword);
