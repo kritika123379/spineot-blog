@@ -1,31 +1,54 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Table } from "react-bootstrap";
+import { Grid, Row, Col, Table,Button } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import {connect} from "react-redux";
 import * as action from "../redux/actions/fetchAction";
 import Moment from 'react-moment';
-
+import logo from "../assets/img/faces/face-1.jpg"
+import {logoStyle,textStyle,buttonStyle} from "../variables/Variables";
+import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
+import CustomButton from "components/CustomButton/CustomButton"
 
 class TableList extends Component {
   componentDidMount(){
-    console.log('com',this.props.Data)
     this.props.Data();
   }
   render() {
     const {thArray,userData}=this.props;
-     console.log('props',this.props);
     return (
-      <div className="content">
+      <div className="content">     
         <Grid fluid>
           <Row>
             <Col md={12}>
+              <Card 
+              content={
+                <>
+                <input type="text"
+                placeholder="Search"
+                />
+                <CustomButton 
+                fill="true"
+                pullRight="true"
+                >  +Add New Design
+                </CustomButton>
+                
+                {/*
+                <Button variant="primary"
+                 size="lg" 
+                 style={buttonStyle}>
+                  +Add New Design
+                </Button>*/}
+              </>
+            }
+              />
               <Card
-                title="Striped Table with Hover"
-                category="Here is a subtitle for this table"
+              title="Striped Table with Hover"
+              category="Here is a subtitle for this table"
                 ctTableFullWidth
                 ctTableResponsive
-                content={   
-                  <Table striped hover>
+                content={
+                  <Table striped hover>  
+                    
                     <thead>
                       <tr>
                         {thArray.map((prop, key) => {
@@ -37,13 +60,28 @@ class TableList extends Component {
                     {userData.map((item,key)=>{
                       return (
                         <tr key={item._id}>
+                        <td><CustomCheckbox isChecked=""/></td>
+                        <td><img src={logo} style={logoStyle}/></td>
                         <td>{item.name}</td>
-                        <td>{item._id}</td>
                         <td>{item.email}</td>
                         <td>{item.phone}</td>
                         <td>{item.service}</td>
                         <td><Moment>{item.createdAt}</Moment></td>
                         <td><Moment>{item.updatedAt}</Moment></td>
+                        <td>  
+                        <p style={textStyle}>
+                        <u>Edit</u> </p>
+                        </td>
+                        <td><Button 
+                        bsStyle="primary" 
+                        pullRight="true" 
+                        fill ="true">
+                        Delete</Button></td>
+                       {/* <td> <CustomButton fill="true" round="true">Delete</CustomButton></td> 
+                        <Button variant="primary" size="sm" style={buttonStyle}>
+                            Action
+                      </Button>*/}
+                          
                         </tr>
                       )
                     })}
@@ -51,13 +89,14 @@ class TableList extends Component {
                   </Table>
                 }
               />
-            </Col>
+            </Col>          
           </Row>
         </Grid>
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   console.log(state);
   return{

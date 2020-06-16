@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Table } from "react-bootstrap";
-import Moment from 'react-moment';
+import { Grid, Row, Col, Table,Button } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
-import { tdUserArray,thUserArray } from "variables/Variables.jsx";
+import Moment from 'react-moment';
+import {logoStyle,textStyle,tdUserArray,thUserArray} from "../variables/Variables";
+import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
+import CustomButton from "components/CustomButton/CustomButton"
+import logo from "../assets/img/faces/face-1.jpg"
 
 class Currentusers extends Component {
   render() {
@@ -11,13 +14,28 @@ class Currentusers extends Component {
         <Grid fluid>
           <Row>
             <Col md={12}>
+              <Card 
+              content={
+                <>
+                <input type="text"
+                placeholder="Search"
+                />
+                <CustomButton 
+                fill="true"
+                pullRight="true"
+                >  +Add New Design
+                </CustomButton>
+              </>
+            }
+              />
               <Card
-                title="Striped Table with Hover"
-                category="Here is a subtitle for this table"
+              title="Striped Table with Hover"
+              category="Here is a subtitle for this table"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
-                  <Table striped hover>
+                  <Table striped hover>  
+                    
                     <thead>
                       <tr>
                         {thUserArray.map((prop, key) => {
@@ -26,25 +44,28 @@ class Currentusers extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {tdUserArray.map((prop, key) => {
-                        return (
-                              <tr key={key}>
-                                {prop.slice(0,1).map((prop, key) => {
-                                  return <td key={key}><Moment>{prop}</Moment></td>;
-                                  
-                                })}
-                                {prop.slice(1,5).map((prop, key) => {
-                                  return <td key={key}>{prop}</td>;
-                                })}
-                              </tr>
-                            );
-                          })}
-                       
+                    {tdUserArray.map((prop, key) => {
+                      return (
+                            <tr key={key}>
+                            <td><CustomCheckbox isChecked=""/></td>
+                            <td><img src={logo} style={logoStyle}/></td>
+                              {prop.slice(0,1).map((prop, key) => {
+                                return <td key={key}><Moment>{prop}</Moment></td>;
+                                
+                              })}
+                              {prop.slice(1,5).map((prop, key) => {
+                                return <td key={key}>{prop}</td>;
+                              })}
+                              <td> <p style={textStyle}><u>Edit</u> </p></td>
+                           <td> <CustomButton fill="true" round="true">Delete</CustomButton></td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 }
               />
-            </Col>
+            </Col>    
           </Row>
         </Grid>
       </div>
@@ -52,4 +73,12 @@ class Currentusers extends Component {
   }
 }
 
-export default Currentusers
+
+
+export default Currentusers;
+
+
+
+
+
+

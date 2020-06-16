@@ -2,26 +2,20 @@ import React, { Component } from "react";
 import {
   Grid,
   Row,
-  Col,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-
+  Col
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 /*redux */
 import { loginUserAction } from '../redux/actions/userActions';
-import avatar from "assets/img/faces/face-3.jpg";
 import { connect } from "react-redux";
 import { LOGIN_LOADING } from "redux/actions/types";
 import NotificationSystem from "react-notification-system";
 import { style } from "variables/Variables.jsx";
 import { LOGIN_SUCCESS } from "redux/actions/types";
-import history from "customHistory";
+import { _authCheck } from "utils/authCheck";
 
 class Login extends Component {
   state = {
@@ -32,6 +26,9 @@ class Login extends Component {
 
   componentDidMount(){
     this.setState({ _notificationSystem: this.refs.notificationSystem });
+    if(!!_authCheck()){
+      this.props.history.push('/admin/dashboard')
+    }
   }
   _onSubmit = e => {
     e.preventDefault();
@@ -74,6 +71,7 @@ class Login extends Component {
   };
   render() {
     const { email, password } = this.state;
+    console.log(email,password);
     const { authUser: {type, data} } = this.props
     return (
       <div className="content">

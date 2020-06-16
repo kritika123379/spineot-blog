@@ -18,6 +18,8 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { _logout } from "utils/globalFunc";
+import { _getUser } from "utils/authCheck";
 
 class AdminNavbarLinks extends Component {
   render() {
@@ -33,10 +35,10 @@ class AdminNavbarLinks extends Component {
       <div>
         <Nav>
           <NavItem eventKey={1} href="#">
-            <i className="fa fa-dashboard" />
+            {/* <i className="fa fa-dashboard" /> */}
             <p className="hidden-lg hidden-md">Dashboard</p>
           </NavItem>
-          <NavDropdown
+          {/* <NavDropdown
             eventKey={2}
             title={notification}
             noCaret
@@ -51,14 +53,13 @@ class AdminNavbarLinks extends Component {
           <NavItem eventKey={3} href="#">
             <i className="fa fa-search" />
             <p className="hidden-lg hidden-md">Search</p>
-          </NavItem>
+          </NavItem> */}
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={1} href="#">
-            Account
-            
+            {!!_getUser() && _getUser().name}
           </NavItem>
-          <NavDropdown
+          {/* <NavDropdown
             eventKey={2}
             title="Dropdown"
             id="basic-nav-dropdown-right"
@@ -70,14 +71,15 @@ class AdminNavbarLinks extends Component {
             <MenuItem eventKey={2.5}>Something</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
-          </NavDropdown>
+          </NavDropdown> */}
           <NavItem eventKey={3} href="#">
-          <NavLink
-          to="/login"
+          <a
+          onClick={() => _logout()}
+          href="/login"
           className="nav-link"
           activeClassName="active"
           >  Log out
-        </NavLink>
+        </a>
           </NavItem>
         </Nav>
       </div>

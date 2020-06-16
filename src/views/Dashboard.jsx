@@ -18,7 +18,6 @@
 import React, { Component } from "react";
 import ChartistGraph from "react-chartist";
 import { Grid, Row, Col } from "react-bootstrap";
-
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
@@ -34,9 +33,16 @@ import {
   responsiveBar,
   legendBar
 } from "variables/Variables.jsx";
+import { _authCheck } from "utils/authCheck";
 
 
 class Dashboard extends Component {
+
+  componentDidMount(){
+    if(!_authCheck()){
+      this.props.history.push('/login')
+    }
+  }
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {

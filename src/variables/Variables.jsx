@@ -239,7 +239,19 @@ var style = {
     }
   }
 };
+//logo images
 
+const logoStyle={
+  width:"40px",
+  height:"40px"
+}
+const buttonStyle={
+  border: "2 px solid #63d8f1",
+  color: "#63d8f1"
+}
+const textStyle={
+  color: "#63d8f1"
+}
 //
 // //
 // // // For tables
@@ -609,6 +621,9 @@ module.exports = {
   belowStyle,
   categoryStyle,
   thUserArray,
-  tdUserArray
+  tdUserArray,
+  logoStyle,
+  textStyle,
+  buttonStyle
   // For charts (Dashboard view)
 };

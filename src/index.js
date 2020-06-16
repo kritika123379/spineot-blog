@@ -16,7 +16,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store/store";
 import Login from "views/Login";
 import Forgotpassword from "views/Forgotpassword";
-
+import Dashboard from "views/Dashboard";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -26,9 +27,7 @@ ReactDOM.render(
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/forgotPassword" render={props => <Forgotpassword {...props} />} />
       <Redirect from="/" to="/admin/dashboard" />
-     
     </Switch>
-
   </BrowserRouter>
   </Provider>,
   document.getElementById("root")
