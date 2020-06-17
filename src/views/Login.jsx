@@ -82,6 +82,7 @@ class Login extends Component {
             <Col md={12} className="bg-dark">
               <div  className="center-container width_50">
                 <Card
+                plain
                   title="Spineor Web Services"
                   category="welcome"
                   content={

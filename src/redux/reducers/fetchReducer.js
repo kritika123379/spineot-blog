@@ -6,7 +6,7 @@ const initialState = {
     fetch_Data:[],
     fetch_Error:'',
     recievedAt:'',
-    thArray : [" "," ","name", "_id", "email", "phone","createdAt","updatedAt","Actions"]
+    thArray : [" "," ","name", "_id", "email", "phone","Actions","createdAt","updatedAt"]
   };
 
   export default function fetchReducer(state = initialState, action) {

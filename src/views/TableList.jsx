@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Grid, Row, Col, Table,Button } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import {connect} from "react-redux";
@@ -8,13 +8,15 @@ import logo from "../assets/img/faces/face-1.jpg"
 import {logoStyle,textStyle,buttonStyle} from "../variables/Variables";
 import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
 import CustomButton from "components/CustomButton/CustomButton"
+import FilterCard from "components/FilterCard";
 
 class TableList extends Component {
   componentDidMount(){
     this.props.Data();
   }
   render() {
-    const {thArray,userData}=this.props;
+    const {thArray,userData,filteredData}=this.props;
+    console.log('props  dd',this.props);
     return (
       <div className="content">     
         <Grid fluid>
@@ -22,8 +24,13 @@ class TableList extends Component {
             <Col md={12}>
               <Card 
               content={
-                <>
-                <input type="text"
+                <Fragment>
+             <FilterCard
+             userData={userData}
+             />
+                
+                {/*
+                     <input type="text"
                 placeholder="Search"
                 />
                 <CustomButton 
@@ -31,14 +38,12 @@ class TableList extends Component {
                 pullRight="true"
                 >  +Add New Design
                 </CustomButton>
-                
-                {/*
                 <Button variant="primary"
                  size="lg" 
                  style={buttonStyle}>
                   +Add New Design
                 </Button>*/}
-              </>
+              </Fragment>
             }
               />
               <Card
@@ -57,12 +62,13 @@ class TableList extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                    {userData.map((item,key)=>{
+                    {filteredData.map((item,key)=>{
                       return (
                         <tr key={item._id}>
                         <td><CustomCheckbox isChecked=""/></td>
                         <td><img src={logo} style={logoStyle}/></td>
                         <td>{item.name}</td>
+                        <td>{item._id}</td>
                         <td>{item.email}</td>
                         <td>{item.phone}</td>
                         <td>{item.service}</td>
@@ -98,11 +104,12 @@ class TableList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  console.log('state',state);
   return{
     userData: state.fetchdata.fetch_Data,
     error: state.fetchdata.fetch_Error,
-    thArray:state.fetchdata.thArray
+    thArray:state.fetchdata.thArray,
+    filteredData:state.filter.filteredData
   }
 
 }
