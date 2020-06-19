@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { Grid, Row, Col, Table,Button } from "react-bootstrap";
-import Card from "components/Card/Card.jsx";
+import Card from "components/Card/Card";
 import {connect} from "react-redux";
 import * as action from "../redux/actions/fetchAction";
 import Moment from 'react-moment';
 import logo from "../assets/img/faces/face-1.jpg"
-import {logoStyle,textStyle,buttonStyle} from "../variables/Variables";
+import {logoStyle,textStyle} from "../variables/Variables";
 import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
-import CustomButton from "components/CustomButton/CustomButton"
 import FilterCard from "components/FilterCard";
 
 class TableList extends Component {
@@ -25,43 +24,27 @@ class TableList extends Component {
               <Card 
               content={
                 <Fragment>
-             <FilterCard
-             userData={userData}
-             />
-                
-                {/*
-                     <input type="text"
-                placeholder="Search"
+                <FilterCard
+                userData={userData}
                 />
-                <CustomButton 
-                fill="true"
-                pullRight="true"
-                >  +Add New Design
-                </CustomButton>
-                <Button variant="primary"
-                 size="lg" 
-                 style={buttonStyle}>
-                  +Add New Design
-                </Button>*/}
               </Fragment>
             }
               />
               <Card
-              title="Striped Table with Hover"
-              category="Here is a subtitle for this table"
+                title="Striped Table with Hover"
+                category="Here is a subtitle for this table"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
                   <Table striped hover>  
-                    
-                    <thead>
-                      <tr>
-                        {thArray.map((prop, key) => {
-                          return <th key={key}>{prop}</th>;
-                        })}
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <thead>
+                  <tr>
+                  {thArray.map((prop, key) => {
+                    return <th key={key}>{prop}</th>;
+                  })}
+                  </tr>
+                  </thead>
+                  <tbody>
                     {filteredData.map((item,key)=>{
                       return (
                         <tr key={item._id}>
@@ -76,18 +59,14 @@ class TableList extends Component {
                         <td><Moment>{item.updatedAt}</Moment></td>
                         <td>  
                         <p style={textStyle}>
-                        <u>Edit</u> </p>
+                        <u>Edit</u> 
+                        </p>
                         </td>
                         <td><Button 
                         bsStyle="primary" 
                         pullRight="true" 
                         fill ="true">
                         Delete</Button></td>
-                       {/* <td> <CustomButton fill="true" round="true">Delete</CustomButton></td> 
-                        <Button variant="primary" size="sm" style={buttonStyle}>
-                            Action
-                      </Button>*/}
-                          
                         </tr>
                       )
                     })}

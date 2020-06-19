@@ -1,6 +1,5 @@
 import * as types from "./types";
 import axios from "axios";
-//import config from "../config";
 
 
 export function fetchError(payload) {
@@ -25,7 +24,6 @@ export const fetchTable = () => {
             console.log(error.response.data);
             dispatch(fetchError(error.response.data));
           } else {
-            // Something happened in setting up the request that triggered an Error
             console.log("Error", error.message);
             throw error;
           }

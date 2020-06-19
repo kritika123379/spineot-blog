@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from "react";
-import { Grid, Row, Col, Table,Button } from "react-bootstrap";
-import Card from "components/Card/Card.jsx";
+import { Grid, Row, Col } from "react-bootstrap";
+import Card from "components/Card/Card";
 import {connect} from "react-redux";
-import { sortDataByService,searchByName,sortDataById,filterByDate } from "redux/actions/filterActions";
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
+import { sortDataByService,
+  searchByName,
+  sortDataById,
+  filterByDate } from "redux/actions/filterActions";
 
 
 class FilterCard extends Component {
@@ -83,8 +86,8 @@ class FilterCard extends Component {
               onChange={this.SortDataById}
             >
             <option aria-label="None" value="" />
-            <option value="increase">increase</option>
-            <option value="decrease">decrease</option>
+            <option value="highestfirst">highestfirst</option>
+            <option value="lowestfirst">lowestfirst</option>
               
             </Select>
             </label>

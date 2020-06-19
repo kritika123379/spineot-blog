@@ -1,11 +1,11 @@
 
-import Dashboard from "views/Dashboard.jsx";
-import TableList from "views/TableList.jsx";
+import Dashboard from "views/Dashboard";
+import TableList from "views/TableList";
 
 import Login from "views/Login";
 import Currentusers from "views/Currentusers";
-import Icons from "views/Icons.jsx";
-import Maps from "views/Maps.jsx";
+import Icons from "views/Icons";
+import Maps from "views/Maps";
 /*
 
 import Typography from "views/Typography.jsx";

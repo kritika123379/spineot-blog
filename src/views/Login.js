@@ -5,9 +5,9 @@ import {
   Col
 } from "react-bootstrap";
 
-import { Card } from "components/Card/Card.jsx";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import Button from "components/CustomButton/CustomButton.jsx";
+import { Card } from "components/Card/Card";
+import { FormInputs } from "components/FormInputs/FormInputs";
+import Button from "components/CustomButton/CustomButton";
 /*redux */
 import { loginUserAction } from '../redux/actions/userActions';
 import { connect } from "react-redux";

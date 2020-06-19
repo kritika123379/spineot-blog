@@ -8,7 +8,7 @@ const initialState = {
 
   export default function filterReducer(state = initialState, action) {
     switch (action.type) {
-     
+      
       case types.FILTER_DATA_BY_DATE:
         console.log('action',action);
         return{

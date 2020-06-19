@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Table,Button } from "react-bootstrap";
-import Card from "components/Card/Card.jsx";
+import { Grid, Row, Col, Table } from "react-bootstrap";
+import Card from "components/Card/Card";
 import Moment from 'react-moment';
-import {logoStyle,textStyle,tdUserArray,thUserArray} from "../variables/Variables";
+import {logoStyle,textStyle,tdUserArray,thUserArray} from "../variables/Variables.jsx";
 import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
 import CustomButton from "components/CustomButton/CustomButton"
 import logo from "../assets/img/faces/face-1.jpg"
