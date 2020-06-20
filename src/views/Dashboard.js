@@ -15,7 +15,7 @@ import {
   optionsBar,
   responsiveBar,
   legendBar
-} from "variables/Variables.jsx";
+} from "variables/Variables";
 import { _authCheck } from "utils/authCheck";
 
 

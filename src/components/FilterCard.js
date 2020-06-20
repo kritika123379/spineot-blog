@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import Card from "components/Card/Card";
+import Select from '@material-ui/core/Select';
 import {connect} from "react-redux";
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 import { sortDataByService,
   searchByName,

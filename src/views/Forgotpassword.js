@@ -14,7 +14,7 @@ import { loginUserAction } from '../redux/actions/userActions';
 import { connect } from "react-redux";
 import { LOGIN_LOADING } from "redux/actions/types";
 import NotificationSystem from "react-notification-system";
-import { style } from "variables/Variables.jsx";
+import { style } from "variables/Variables";
 
 
 

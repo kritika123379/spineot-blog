@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap";
-import { belowStyle} from "variables/Variables.jsx";
+import { belowStyle} from "variables/Variables";
 import {NavLink} from "react-router-dom";
 
 function FieldGroup({ label, ...props }) {

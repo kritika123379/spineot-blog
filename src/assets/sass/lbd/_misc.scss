@@ -67,18 +67,24 @@ input:focus {
 .width_50{
     width: 50%;
 }
-
+.pd_30{
+    padding:30px ;
+}
 .bg-dark{
-    //background-color: #ccc;
  background-image: url('/login.jpg');
  background-repeat: no-repeat;
  height: 100%;
  background-size:cover;
- //background-size:  cover;
  width:100%;
- 
 }
 .bg-light{
  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(236, 160, 160)), color-stop(100%, rgb(231, 150, 135)));
   background-image: -webkit-linear-gradient(top, rgb(85, 153, 213) 0, rgb(139, 167, 167) 100%);
 }
+.bg-danger{
+    background-image: url('/sidebar-4.jpg');
+    background-repeat: no-repeat;
+    height: 100%;
+    width:100%;
+}
+  

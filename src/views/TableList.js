@@ -8,13 +8,19 @@ import logo from "../assets/img/faces/face-1.jpg"
 import {logoStyle,textStyle} from "../variables/Variables";
 import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
 import FilterCard from "components/FilterCard";
+import CustomButton from "../components/CustomButton/CustomButton";
+import { NavLink } from "react-router-dom";
 
 class TableList extends Component {
   componentDidMount(){
     this.props.Data();
   }
+  addNewUser = () => {
+    this.props.history.push("/adduser ");
+  }
   render() {
     const {thArray,userData,filteredData}=this.props;
+    
     console.log('props  dd',this.props);
     return (
       <div className="content">     
@@ -36,6 +42,28 @@ class TableList extends Component {
                 ctTableFullWidth
                 ctTableResponsive
                 content={
+                  <Fragment>
+                  <Grid fluid> 
+                  <Row>
+                    <Col md={12}>
+                    <NavLink
+                    to="/addUser"
+                    className="nav-link"
+                    activeClassName="active"
+                    >    
+                      <CustomButton 
+                      bsStyle="primary" 
+                      fill="true"
+                      type="submit"
+                      pullRight="true"
+                      onClick={this.addNewUser}
+                      >  
+                      +Add New Design
+                      </CustomButton>
+                    </NavLink>
+                    </Col>
+                  </Row>
+                  <Row>
                   <Table striped hover>  
                   <thead>
                   <tr>
@@ -58,20 +86,31 @@ class TableList extends Component {
                         <td><Moment>{item.createdAt}</Moment></td>
                         <td><Moment>{item.updatedAt}</Moment></td>
                         <td>  
+                        <NavLink
+                        to="/editUser"
+                        className="nav-link"
+                        activeClassName="active"
+                        >  
                         <p style={textStyle}>
                         <u>Edit</u> 
                         </p>
+                        </NavLink>
                         </td>
-                        <td><Button 
+                        <td>
+                        <Button 
                         bsStyle="primary" 
                         pullRight="true" 
                         fill ="true">
-                        Delete</Button></td>
+                        Delete</Button>
+                        </td>
                         </tr>
                       )
                     })}
                     </tbody>
                   </Table>
+                  </Row>
+                  </Grid>
+                  </Fragment>
                 }
               />
             </Col>          

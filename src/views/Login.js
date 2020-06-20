@@ -13,7 +13,7 @@ import { loginUserAction } from '../redux/actions/userActions';
 import { connect } from "react-redux";
 import { LOGIN_LOADING } from "redux/actions/types";
 import NotificationSystem from "react-notification-system";
-import { style } from "variables/Variables.jsx";
+import { style } from "variables/Variables";
 import { LOGIN_SUCCESS } from "redux/actions/types";
 import { _authCheck } from "utils/authCheck";
 
@@ -117,7 +117,13 @@ class Login extends Component {
                           },
                         ]}
                       />
-                      <Button bsStyle="danger" pullLeft fill type="submit" disabled={type === LOGIN_LOADING}>
+                      <Button 
+                      bsStyle="danger" 
+                      pullLeft 
+                      fill 
+                      type="submit" 
+                      disabled={type === LOGIN_LOADING}
+                      >
                         Login
                       </Button>
                       <div className="clearfix" />

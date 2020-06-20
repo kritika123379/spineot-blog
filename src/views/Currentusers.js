@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card";
 import Moment from 'react-moment';
-import {logoStyle,textStyle,tdUserArray,thUserArray} from "../variables/Variables.jsx";
+import {logoStyle,textStyle,tdUserArray,thUserArray} from "../variables/Variables";
 import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
 import CustomButton from "components/CustomButton/CustomButton"
 import logo from "../assets/img/faces/face-1.jpg"
+import {NavLink} from "react-router-dom";
 
 class Currentusers extends Component {
+ 
   render() {
     return (
       <div className="content">
@@ -20,11 +22,17 @@ class Currentusers extends Component {
                 <input type="text"
                 placeholder="Search"
                 />
+                <NavLink
+                to="/addUser"
+                className="nav-link"
+                activeClassName="active"
+                >    
                 <CustomButton 
                 fill="true"
                 pullRight="true"
                 >  +Add New Design
                 </CustomButton>
+                </NavLink>
               </>
             }
               />
@@ -56,7 +64,17 @@ class Currentusers extends Component {
                               {prop.slice(1,5).map((prop, key) => {
                                 return <td key={key}>{prop}</td>;
                               })}
-                              <td> <p style={textStyle}><u>Edit</u> </p></td>
+                              <td> 
+                              <NavLink
+                              to="/editUser"
+                              className="nav-link"
+                              activeClassName="active"
+                              >   
+                              <p style={textStyle}>
+                              <u>Edit</u>
+                              </p>
+                              </NavLink>
+                              </td>
                            <td> <CustomButton fill="true" round="true">Delete</CustomButton></td>
                             </tr>
                           );

@@ -1,13 +1,15 @@
 
 import Dashboard from "views/Dashboard";
 import TableList from "views/TableList";
-
-import Login from "views/Login";
 import Currentusers from "views/Currentusers";
-import Icons from "views/Icons";
-import Maps from "views/Maps";
+import Adduser from "views/Adduser";
+
 /*
 
+import Login from "views/Login";
+mport Icons from "views/Icons";
+import Maps from "views/Maps";
+import Form from "./views/Form";
 import Typography from "views/Typography.jsx";
 import Icons from "views/Icons.jsx";
 import Maps from "views/Maps.jsx";
@@ -37,19 +39,21 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/icons",
+    path:"/blogs",
     name: "Blogs",
     icon: "pe-7s-science",
-    component: Icons,
-    layout: "/blogs"
+    component:Adduser,
+    layout: "/admin"
   },
   {
-    path: "/maps",
+    path: "/services",
     name: "Services",
     icon: "pe-7s-bell",
-    component: Maps,
-    layout: "/services"
-  }
+    component:Adduser,
+    layout: "/admin"
+  },
+
+ 
   // {
   //   path: "/notifications",
   //   name: "Notifications",
