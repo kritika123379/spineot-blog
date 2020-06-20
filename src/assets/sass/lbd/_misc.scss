@@ -70,6 +70,14 @@ input:focus {
 .pd_30{
     padding:30px ;
 }
+.border-bottom{
+    border-bottom: 1px solid black;
+    width:50%;
+}
+.border-bottom :focus{
+    border-bottom: 2px solid black;
+    width:50%;
+}
 .bg-dark{
  background-image: url('/login.jpg');
  background-repeat: no-repeat;
@@ -77,6 +85,12 @@ input:focus {
  background-size:cover;
  width:100%;
 }
+.pt_20{
+    padding-top: 20px;
+}
+.blogback{
+    background-color: #34495E 
+   }
 .bg-light{
  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(236, 160, 160)), color-stop(100%, rgb(231, 150, 135)));
   background-image: -webkit-linear-gradient(top, rgb(85, 153, 213) 0, rgb(139, 167, 167) 100%);
@@ -87,4 +101,31 @@ input:focus {
     height: 100%;
     width:100%;
 }
+/*Modal css*/
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 100%;
+   // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    height:50%;
+  }
+  .modal-header {
+  
+    padding: 0px ; 
+   // background-color: #bcc9bc;
+    color:black;
+  }
+  .modal-footer {
+    padding: 2px 16px;
+    //background-color: #5cb85c;
+    color: white;
+  }
+
+  
+  
   

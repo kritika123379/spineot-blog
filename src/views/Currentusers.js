@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card";
 import Moment from 'react-moment';
@@ -7,9 +7,22 @@ import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
 import CustomButton from "components/CustomButton/CustomButton"
 import logo from "../assets/img/faces/face-1.jpg"
 import {NavLink} from "react-router-dom";
+import CustomModal from "components/Modal/CustomModal";
 
 class Currentusers extends Component {
- 
+  state={
+    open:false
+  }
+  handleModalClose = () => {
+     this.setState({
+       open:false
+     })
+  }
+ handleModalOpen = () => {
+  this.setState({
+    open:true
+  })
+  }
   render() {
     return (
       <div className="content">
@@ -18,7 +31,7 @@ class Currentusers extends Component {
             <Col md={12}>
               <Card 
               content={
-                <>
+                <Fragment>
                 <input type="text"
                 placeholder="Search"
                 />
@@ -33,7 +46,7 @@ class Currentusers extends Component {
                 >  +Add New Design
                 </CustomButton>
                 </NavLink>
-              </>
+              </Fragment>
             }
               />
               <Card
@@ -75,7 +88,15 @@ class Currentusers extends Component {
                               </p>
                               </NavLink>
                               </td>
-                           <td> <CustomButton fill="true" round="true">Delete</CustomButton></td>
+                           <td> 
+                           <CustomButton 
+                           onClick={this.handleModalOpen}
+                           fill="true" 
+                           round="true"
+                           >
+                                Delete
+                            </CustomButton>
+                           </td>
                             </tr>
                           );
                         })}
@@ -86,6 +107,16 @@ class Currentusers extends Component {
             </Col>    
           </Row>
         </Grid>
+        <CustomModal 
+        modalTitle = "title"
+        modalContent="Content"
+        handleClose ={this.handleModalClose}
+        open={this.state.open}
+        btnLabel="Delete & Continue"
+        cancelBtn="Cancel"
+        primary="secondary"
+        secondary="primary"
+      />
       </div>
     );
   }

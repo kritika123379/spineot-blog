@@ -1,20 +1,10 @@
-
 import Dashboard from "views/Dashboard";
 import TableList from "views/TableList";
 import Currentusers from "views/Currentusers";
 import Adduser from "views/Adduser";
+import Blogs from "views/Blogs";
+import Services from "views/Services";
 
-/*
-
-import Login from "views/Login";
-mport Icons from "views/Icons";
-import Maps from "views/Maps";
-import Form from "./views/Form";
-import Typography from "views/Typography.jsx";
-import Icons from "views/Icons.jsx";
-import Maps from "views/Maps.jsx";
-import Notifications from "views/Notifications.jsx";
-import Upgrade from "views/Upgrade.jsx";*/
 
 const dashboardRoutes = [
   {
@@ -42,33 +32,26 @@ const dashboardRoutes = [
     path:"/blogs",
     name: "Blogs",
     icon: "pe-7s-science",
-    component:Adduser,
+    component:Blogs,
     layout: "/admin"
   },
   {
     path: "/services",
     name: "Services",
     icon: "pe-7s-bell",
+    component:Services,
+    layout: "/admin"
+  },
+  {
+    path: "/addUser",
     component:Adduser,
     layout: "/admin"
   },
-
- 
-  // {
-  //   path: "/notifications",
-  //   name: "Notifications",
-  //   icon: "pe-7s-bell",
-  //   component: Notifications,
-  //   layout: "/admin"
-  // },
-  // {
-  //   upgrade: true,
-  //   path: "/upgrade",
-  //   name: "Upgrade to PRO",
-  //   icon: "pe-7s-rocket",
-  //   component: Upgrade,
-  //   layout: "/admin"
-  // }
+  {
+    path: "/editUser",
+    component:Adduser,
+    layout: "/admin"
+  }
 ];
 
 export default dashboardRoutes;

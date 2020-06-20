@@ -10,8 +10,24 @@ import CustomCheckbox from "components/CustomCheckbox/CustomCheckbox";
 import FilterCard from "components/FilterCard";
 import CustomButton from "../components/CustomButton/CustomButton";
 import { NavLink } from "react-router-dom";
+import CustomModal from "../components/Modal/CustomModal"
+
 
 class TableList extends Component {
+  state ={
+    open :false
+  }
+  handleModalClose = () => {
+    this.setState({
+      open:false
+    })
+  }
+  handleModalOpen = () => {
+    console.log('click')
+    this.setState({
+      open:true
+    })
+  }
   componentDidMount(){
     this.props.Data();
   }
@@ -47,7 +63,7 @@ class TableList extends Component {
                   <Row>
                     <Col md={12}>
                     <NavLink
-                    to="/addUser"
+                    to="/admin/adduser"
                     className="nav-link"
                     activeClassName="active"
                     >    
@@ -87,7 +103,7 @@ class TableList extends Component {
                         <td><Moment>{item.updatedAt}</Moment></td>
                         <td>  
                         <NavLink
-                        to="/editUser"
+                        to="/admin/edituser"
                         className="nav-link"
                         activeClassName="active"
                         >  
@@ -100,6 +116,8 @@ class TableList extends Component {
                         <Button 
                         bsStyle="primary" 
                         pullRight="true" 
+                        onClick={this.handleModalOpen}
+                       // onClick={() => this.handleModalOpen()}
                         fill ="true">
                         Delete</Button>
                         </td>
@@ -110,6 +128,16 @@ class TableList extends Component {
                   </Table>
                   </Row>
                   </Grid>
+                  <CustomModal 
+                    modalTitle = "title"
+                    modalContent="Content"
+                    handleClose ={this.handleModalClose}
+                    open={this.state.open}
+                    btnLabel="Delete & Continue"
+                    cancelBtn="Cancel"
+                    primary="secondary"
+                    secondary="primary"
+                  />
                   </Fragment>
                 }
               />

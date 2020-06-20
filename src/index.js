@@ -19,11 +19,14 @@ import Forgotpassword from "views/Forgotpassword";
 import Dashboard from "views/Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Adduser from "./views/Adduser";
+import  CustomModal from "./components/Modal/CustomModal"
 
 ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
     <Switch>
+   
+    <Route path="/modal" render={props => <CustomModal {...props} />} />
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/forgotPassword" render={props => <Forgotpassword {...props} />} />

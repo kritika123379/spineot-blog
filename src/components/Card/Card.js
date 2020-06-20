@@ -5,6 +5,7 @@ import {categoryStyle} from "../../variables/Variables"
 export class Card extends Component {
   render() {
     return (
+      <div className={this.props.back}>
       <div className={"card" + (this.props.plain ? " card-plain" : "")}>
         <div className={"header" + (this.props.hCenter ? " text-center" : "")}>
         <p className={"category"}>{this.props.category}</p>
@@ -29,6 +30,7 @@ export class Card extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }

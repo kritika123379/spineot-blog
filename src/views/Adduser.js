@@ -5,88 +5,133 @@ import Button from "../components/CustomButton/CustomButton";
 import {Grid,Row,Col} from "react-bootstrap";
 import {withRouter,NavLink} from "react-router-dom";
 import {buttonStyle} from "../variables/Variables";
+import CustomModal from 'components/Modal/CustomModal';
 
 
 
-function Adduser(props) {
-    console.log('Add user',props.history.location.pathname);  
-    const [enteredName,setEnteredName]=useState('');
+function Adduser(props) { 
+    const [enteredFirstName,setEnteredFirstName]=useState('');
+    const [enteredLastName,setEnteredLastName]=useState('');
     const [enteredEmail,setEnteredEmail]=useState('');
     const [enteredPhone,setEnteredPhone]=useState('');
     const [enteredAction,setEnteredAction]=useState('');
     const [enteredUpdates,setEnteredUpdates]=useState('');
+    const [open,setModalOpen]=useState(false);
     const [errors,setErrors]=useState({
-        fullName: '',
+        firstName: '',
+        lastName:'',
         email: '',
         phone: ''
       })
     const _setValue = (event) => {
-        console.log(event.target.value);
-        setEnteredName(event.target.value);   
+        setEnteredFirstName(event.target.value);   
     }
+    /*function for Modal*/
+    const handleModalClose = () => {
+        setModalOpen(false)
+    }
+    const handleModalOpen = () => {
+        setModalOpen(true)
+    }
+    {/* functions for save & Continue*/}
     const addSubmitHandler = event => {
         event.preventDefault()
         console.log('add submit handler');  
     }
     const editSubmitHandler = event => {
         event.preventDefault()
+        console.log('edit submit handler');
+    }
+    {/* function for save & quit */}
+    const addQuitSubmitHandler = event => {
+        event.preventDefault()
+        console.log('add submit handler');  
+    }
+    const editQuitSubmitHandler = event => {
+        event.preventDefault()
         console.log('edit submit hhandler');
     }
    
-    const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-    const phonenoRegax = /^\d{10}$/;
+   const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+   const phonenoRegax =RegExp( /^\d{10}$/);
    
-    let contentClass
-    {props.history.location.pathname === "/addUser"
-    ? contentClass ="bg-light" 
-    : props.history.location.pathname === "/editUser"
-    ? contentClass = "bg-dark"
-    : props.history.location.pathname === "/admin/blogs"
-    ? contentClass = "bg-dark" 
-    : contentClass = "bg-light" }
 
     
     return (
         <div className="content">
         <Grid fluid>
-            <Row className={contentClass}>
+            <Row>
                 <Col md={11} >
-                    <div className="center-container width_50">
+                    <div className="center-container">
                         <Card
                             ctAllIcons
                             ctTableFullWidth
                             ctTableResponsive
                             ctTableUpgrade
-                            title= {props.history.location.pathname === "/addUser"
+                            title= {props.history.location.pathname === "/admin/adduser"
                             ? "ADD USER DETAILS"
                             : "EDIT USER DETAILS"}
                             category="Spineor Web Services"
                             content={
                                 <React.Fragment>
                                     <form className="pd_30">
+                                    <Grid>
+                                    <Row>
+                                    <Col md={6}>
                                        <FormInputs
-                                        ncols={["col-md-6"]}
+                                        ncols={["col-md-5"],["border-bottom"]}
                                         properties={[{
-                                            label:"Name",
+                                            label:"FirstName",
                                             type:"text",
                                             bsClass:"form-control",
-                                            placeholder:"Enter Name",
-                                            name:"name",
-                                            value:enteredName,
+                                            placeholder:"Enter First Name",
+                                            name:"firstname",
+                                            value:enteredFirstName,
                                             required:"true",
                                            // onChange:_setValue
                                             onChange:event => {
-                                                errors.fullName = 
-                                                event.target.value.length < 5
-                                                  ? 'Full Name must be 5 characters long!'
-                                                  : '';
-                                                setEnteredName(event.target.value)
+                                                errors.firstName =
+                                                event.target.value.length < 3
+                                                ? 'First Name must be 3 characters long!'
+                                                :  event.target.value.length > 10
+                                                ? 'First Name must be less than 10 characters!'
+                                                : ' '
+                                                setEnteredFirstName(event.target.value)
                                             }
                                         },]}
                                        /> 
-                                       {errors.fullName}
+                                       {errors.firstName}
+                                    </Col>
+                                    <Col md={6}>
                                        <FormInputs
-                                       ncols={["col-md-6"]}
+                                        ncols={["col-md-5"],["border-bottom"]}
+                                        properties={[{
+                                            label:"LastName",
+                                            type:"text",
+                                            bsClass:"form-control",
+                                            placeholder:"Enter Last Name",
+                                            name:"lastname",
+                                            value:enteredLastName,
+                                            required:"true",
+                                           // onChange:_setValue
+                                            onChange:event => {
+                                                errors.lastName = 
+                                                event.target.value.length < 3
+                                                  ? 'Last Name must be 3 characters long!'
+                                                  :  event.target.value.length > 10
+                                                  ? 'Last Name must be less than 10 characters!'
+                                                  : ' '
+                                                setEnteredLastName(event.target.value)
+                                            }
+                                        },]}
+                                       /> 
+                                       {errors.lastName}
+                                    </Col>
+                                    </Row>
+                                    <Row>
+                                    <Col md={6}>
+                                       <FormInputs
+                                       ncols={["col-md-5"],["border-bottom"]}
                                        properties={[{
                                            label:"Email Address",
                                            type:"text",
@@ -104,8 +149,10 @@ function Adduser(props) {
                                             }
                                        },]}
                                        />{errors.email}
+                                    </Col>   
+                                    <Col md={6}>
                                        <FormInputs
-                                       ncols={["col-md-6"]}
+                                       ncols={["col-md-5"],["border-bottom"]}
                                        properties={[{
                                            label:"Phone Number",
                                            type:"number",
@@ -125,9 +172,13 @@ function Adduser(props) {
                                                setEnteredPhone(value)}
                                        },]}
                                        />{errors.phone}
-                                      <FormInputs
-                                      ncols={["col-md-6"]}
-                                      properties={[{
+                                    </Col>   
+                                    </Row>
+                                    <Row>
+                                    <Col md={6}>
+                                       <FormInputs
+                                        ncols={["col-md-5"],["border-bottom"]}
+                                        properties={[{
                                           label:"Enter Actions",
                                           type:"text",
                                           bsClass:"form-control",
@@ -140,8 +191,10 @@ function Adduser(props) {
                                           }
                                       }]}
                                       />
+                                    </Col>
+                                    <Col md={6}>
                                       <FormInputs
-                                      ncols={["col-md-6"]}
+                                      ncols={["col-md-5"],["border-bottom"]}
                                       properties={[{
                                           label:"Updated At",
                                           type:"date",
@@ -151,37 +204,61 @@ function Adduser(props) {
                                           defaultValue:new Date(),
                                           value:enteredUpdates,
                                           onChange:event=>{
-                                              console.log(event.target.value);
                                               setEnteredUpdates(event.target.value)
                                           }
                                       }]}
                                       />
-                                      <Button
-                                      onClick={props.history.location.pathname === "/addUser"
-                                      ? {addSubmitHandler}
-                                      : {editSubmitHandler}}
-                                      bsStyle= "primary"
-                                      pullLeft
-                                      fill
-                                      type="submit">
-                                      {props.history.location.pathname === "/addUser"
-                                      ? "Add Details"
-                                      : "Edit Details"}
-
-                                      </Button>
-                                      <NavLink
-                                      to="/admin/table"
-                                      className="nav-link"
-                                      activeClassName="active"
-                                      >    
-                                      <Button
-                                      bsStyle="white"
-                                      pullLeft
-                                      fill
-                                      type="submit"> 
-                                        Cancel
-                                      </Button>
-                                      </NavLink>
+                                    </Col>
+                                    </Row>
+                                    <Row className="pt_20">
+                                    <Col md={3}>
+                                        <NavLink
+                                        to="/admin/table"
+                                        className="nav-link"
+                                        activeClassName="active"
+                                        >    
+                                        <Button
+                                        bsStyle="white"
+                                        onClick={handleModalClose}
+                                        pullLeft
+                                        fill
+                                        type="submit"> 
+                                            Cancel
+                                        </Button>
+                                        </NavLink>
+                                    </Col>
+                                    <Col md={4}>
+                                        <Button
+                                        onClick={props.history.location.pathname === "/admin/adduser"
+                                        ? {addQuitSubmitHandler}
+                                        : {editQuitSubmitHandler}}
+                                        bsStyle= "info"
+                                        pullLeft
+                                        fill
+                                        onClick={handleModalOpen}
+                                        type="submit">
+                                        {props.history.location.pathname === "/admin/adduser"
+                                        ? "Add Details & Quit"
+                                        : "Edit Details & Quit"}
+                                        </Button>
+                                    </Col>     
+                                    <Col md={4}>
+                                        <Button
+                                        onClick={props.history.location.pathname === "/admin/adduser"
+                                        ? {addSubmitHandler}
+                                        : {editSubmitHandler}}
+                                        bsStyle= "primary"
+                                        pullLeft
+                                        fill
+                                        onClick={handleModalOpen}
+                                        type="submit">
+                                        {props.history.location.pathname === "/admin/adduser"
+                                        ? "Add Details & Continue"
+                                        : "Edit Details & Continue"}
+                                        </Button>
+                                    </Col>     
+                                    </Row>
+                                    </Grid>
                                     </form>
                                 </React.Fragment>
                             }
@@ -190,6 +267,18 @@ function Adduser(props) {
                 </Col>
             </Row>
         </Grid>
+        <CustomModal 
+        modalTitle = "title"
+        modalContent="Content"
+        handleClose ={handleModalClose}
+        open={open}
+        cancelBtn="Cancel"
+        primary="secondary"
+        secondary="primary"
+        btnLabel={props.history.location.pathname === "/admin/adduser"
+        ? "Add Details & Continue"
+        : "Edit Details & Continue"}
+      />
         </div>
     )
 }
