@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "axios": "^0.19.2",
-    "bootstrap": "3.3.7",
+    "bootstrap": "3.4.1",
     "chartist": "0.10.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.26.0",
