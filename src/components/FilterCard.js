@@ -42,7 +42,7 @@ class FilterCard extends Component {
   render() {
     const {userData}=this.props;
     const {searchinput,dateinput,idinput,serviceinput,checkedB}=this.state;
-    console.log('the prps',this.props);
+   
     return (
       <div className="content">     
         <Grid fluid>
@@ -133,7 +133,7 @@ class FilterCard extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+
   return{
     userData: state.fetchdata.fetch_Data,
     error: state.fetchdata.fetch_Error,
@@ -142,7 +142,6 @@ const mapStateToProps = state => {
 
 }
 const dispatchers = dispatch =>{
-  console.log('p',dispatch);
   return{
    SearchDataByDate : (data,dateinput) => dispatch(filterByDate(data,dateinput)),
    SearchDataByName : (data,nameinput)  =>dispatch(searchByName(data,nameinput)),

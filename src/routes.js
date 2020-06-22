@@ -4,6 +4,9 @@ import Currentusers from "views/Currentusers";
 import Adduser from "views/Adduser";
 import Blogs from "views/Blogs";
 import Services from "views/Services";
+import BlogsForm from "views/BlogsForm";
+import ServiceForm from "views/ServiceForm";
+
 
 
 const dashboardRoutes = [
@@ -51,7 +54,18 @@ const dashboardRoutes = [
     path: "/editUser",
     component:Adduser,
     layout: "/admin"
+  },
+  {
+    path: "/add_blog",
+    component:BlogsForm,
+    layout: "/admin"
+  },
+  {
+    path: "/add_service",
+    component:ServiceForm,
+    layout: "/admin"
   }
+
 ];
 
 export default dashboardRoutes;

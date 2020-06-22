@@ -268,7 +268,8 @@ const tdUserArray = [
   ["2020-05-25T10:36:57.984Z", "Mongo user","jalajgoel45@gmail.com","MOBILE SERVICES","work"]
   
 ];
-
+const thBlogArray =["Id","Name ","Email","Phone","Service","CreatedAt","UpdatedAt"]
+const thServiceArray =["Id","Picture","Title","User","Features","Description","CreatedAt","UpdatedAt"]
 
 
 //
@@ -621,6 +622,8 @@ module.exports = {
   tdUserArray,
   logoStyle,
   textStyle,
-  buttonStyle
+  buttonStyle,
+  thBlogArray,
+  thServiceArray
   // For charts (Dashboard view)
 };

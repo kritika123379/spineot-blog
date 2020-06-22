@@ -1,44 +1,62 @@
-import React,{useState} from 'react'
+import React,{useState, useCallback ,useEffect, Fragment} from 'react'
 import Card from "../components/Card/Card";
-import FormInputs from "../components/FormInputs/FormInputs";
 import Button from "../components/CustomButton/CustomButton";
-import {Grid,Row,Col} from "react-bootstrap";
+import {Grid,Row,Col,Table} from "react-bootstrap";
 import {withRouter,NavLink} from "react-router-dom";
 import CustomModal from 'components/Modal/CustomModal';
+import { getServicesAction } from "../redux/actions/serviceActions";
+import { shallowEqual, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {thServiceArray,logoStyle} from "../variables/Variables";
+import CustomButton from '../components/CustomButton/CustomButton';
+import Loader from 'components/Loader/Loader';
 
 
 
-function Services(props) {
-    console.log('Add user',props.history.location.pathname);  
-    const [enteredFirstName,setEnteredFirstName]=useState('');
-    const [enteredLastName,setEnteredLastName]=useState('');
-    const [enteredDescription,setEnteredDescription]=useState('');
-    const [enteredImage,setEnteredImage]=useState('');
-    const [enteredFeatures,setEnteredFeatures]=useState('');
-    const [open,setModalOpen]=useState(false);
-    const [errors,setErrors]=useState({
-        firstname: '',
-        lastname:'',
-        description: ''
-      })
-  
-    const submitHandler = event => {
-        event.preventDefault()
-        console.log('add submit handler');  
-    }
-    const handleModalClose = () => {
-        setModalOpen(false)
-    }
-    const handleModalOpen = () => {
-        setModalOpen(true)
-    }
+function Services(props) { 
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch((getServicesAction()))
+    }, [dispatch])
+    const servicesData = useSelector(state => (state.service.data ), shallowEqual); 
+    const servicesLoading = useSelector(state => (state.service.loading ), shallowEqual); 
+    const servicesType = useSelector(state => (state.service.type ), shallowEqual); 
+    const servicesMessage = useSelector(state => (state.service.message ), shallowEqual); 
+    console.log('the services get data',servicesData);
     return (
         <div className="content">
-        <Grid fluid>
+        {servicesLoading === true
+        ? <Loader/>
+        :(<Grid fluid>
             <Row>
-                <Col md={11} >
+                <Col md={12}>
+                <Card 
+                content={
+                    <Fragment>
+                    <input type="text"
+                    placeholder="Search"
+                    />
+                    <NavLink
+                    to="/admin/add_service"
+                    className="nav-link"
+                    activeClassName="active"
+                    >    
+                    <CustomButton 
+                    fill="true"
+                    pullRight="true"
+                    >  +Add New Service
+                    </CustomButton>
+                    </NavLink>
+                </Fragment>
+                }
+                />
+                </Col>
+            </Row>
+            <Row>
+                <Col md={12}>
                     <div className="center-container">
                         <Card
+                            back="blogback"
                             ctAllIcons
                             ctTableFullWidth
                             ctTableResponsive
@@ -47,170 +65,40 @@ function Services(props) {
                             category="Spineor Web Services"
                             content={
                                 <React.Fragment>
-                                    <form className="pd_30">
-                                    <Grid>
-                                      <Row>
-                                       <Col md={5}>
-                                       <FormInputs
-                                        ncols={["col-md-5"],["border-bottom"]}
-                                        properties={[{
-                                            label:"First",
-                                            type:"text",
-                                            bsClass:"form-control",
-                                            placeholder:"Enter First Name",
-                                            name:"firstname",
-                                            value:enteredFirstName,
-                                            required:"true",
-                                            onChange:event => {
-                                                errors.firstname = 
-                                                event.target.value.length < 3
-                                                  ? 'First Name must be 3 characters long!'
-                                                  : event.target.value.length > 10 
-                                                  ? 'First Name must be less than 10 characters!'
-                                                  : ' '
-                                                setEnteredFirstName(event.target.value)
-                                            }
-                                        },]}
-                                       /> 
-                                       {errors.firstname}
-                                       </Col>
-                                       <Col md={5}>
-                                        <FormInputs
-                                        ncols={["col-md-5"],["border-bottom"]}
-                                        properties={[{
-                                            label:"Last",
-                                            type:"text",
-                                            bsClass:"form-control",
-                                            placeholder:"Enter Last Name",
-                                            name:"lastname",
-                                            value:enteredLastName,
-                                            required:"true",
-                                            onChange:event => {
-                                                errors.lastname = 
-                                                event.target.value.length < 3
-                                                    ? 'Last Name must be 3 characters long!'
-                                                    : event.target.value.length > 10 
-                                                    ? 'Last Name must be less than 10 characters!'
-                                                    : ' '
-                                                setEnteredLastName(event.target.value)
-                                            }
-                                        },]}
-                                        /> 
-                                        {errors.lastname}
-                                      </Col>
-                                      </Row>
-                                      <Row>
-                                       <Col md={5}>
-                                        <FormInputs
-                                        ncols={["col-md-5"],["border-bottom"]}
-                                        properties={[{
-                                            label:"Image",
-                                            type:"text",
-                                            bsclass:"form-control",
-                                            placeholder:"Enter Image",
-                                            name:"image",
-                                            value:enteredImage,
-                                            onChange:event => {
-                                                console.log(event)
-                                                const {  value } = event.target;
-                                                setEnteredImage(value)}
-                                        },]}
-                                        />
-                                       </Col>
-                                       <Col md={5}>
-                                       <FormInputs
-                                       ncols={["col-md-5"],["border-bottom"]}
-                                       properties={[{
-                                           label:"Features",
-                                           type:"text",
-                                           bsClass:"form-control",
-                                           placeholder:"Enter Features",
-                                           name:"action",
-                                           value:enteredFeatures,
-                                           onChange:event=>{
-                                               setEnteredFeatures(event.target.value)
-                                           }
-                                       }]}
-                                       />
-                                       </Col>
-                                      </Row>
-                                      <Row>
-                                      <Col md={10}>
-                                        <FormInputs
-                                        ncols={["col-md-5"],["border-bottom"]}
-                                        properties={[{
-                                            label:"Description",
-                                            type:"text",
-                                            bsClass:"form-control",
-                                            placeholder:"Enter Description",
-                                            name:"description",
-                                            value:enteredDescription,
-                                            onChange:event => {
-                                            errors.description= 
-                                            event.target.value.length < 5
-                                                ? 'Description must be 5 characters long!'
-                                                : '';
-                                                setEnteredDescription(event.target.value) 
-                                            }
-                                        },]}
-                                        />{errors.description}
-                                      </Col>
-                                      </Row>
-                                      <Row className="pt_20">
-                                      <Col md={6}>
-                                        <Button
-                                            bsStyle="white"
-                                            pullLeft
-                                            fill
-                                            type="submit"
-                                            > 
-                                         Cancel
-                                        </Button>
-                                     </Col>
-                                     <Col md={3}>
-                                        <Button
-                                            onClick={submitHandler}
-                                            bsStyle= "info"
-                                            pullLeft
-                                            fill
-                                            onClick={handleModalOpen}
-                                            type="submit"
-                                        >
-                                        Save & Quit
-                                        </Button>
-                                     </Col>
-                                     <Col md={3}>
-                                        <Button
-                                            onClick={submitHandler}
-                                            bsStyle= "primary"
-                                            pullLeft
-                                            fill
-                                            onClick={handleModalOpen}
-                                            type="submit"
-                                        >
-                                        Save & Continue
-                                        </Button>
-                                     </Col>
-                                     </Row>
-                                    </Grid>
-                                    </form>
+                                    <Table striped hover>  
+                                        <thead>
+                                            <tr>
+                                                {thServiceArray.map((prop, key) => {
+                                                return <th key={key}>{prop}</th>;
+                                                })}
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+                                        {servicesData && servicesData !== null ? servicesData.services.map((prop,key)=>{
+                                            return (
+                                                <Fragment>
+                                                    <tr key={prop._id}>
+                                                    <td>{prop._id}</td>
+                                                    <td><img src={prop.picture} alt="picture"style={logoStyle}/></td>
+                                                    <td>{prop.title}</td>
+                                                    <td>{prop.user}</td>
+                                                    <td>{prop.features}</td>
+                                                    <td>{prop.description}</td>
+                                                    <td>{prop.createdAt}</td>
+                                                    <td>{prop.updatedAt}</td>
+                                                    </tr>
+                                                </Fragment>
+                                            )
+                                        }): null }
+                                    </tbody>
+                                    </Table>
                                 </React.Fragment>
                             }
-                        />
+                        />      
                     </div>
                 </Col>
             </Row>
-        </Grid>
-        <CustomModal 
-        modalTitle = "title"
-        modalContent="Content"
-        handleClose ={handleModalClose}
-        open={open}
-        btnLabel="Save & Continue"
-        cancelBtn="Cancel"
-        primary="secondary"
-        secondary="primary"
-      />
+        </Grid>)}
         </div>
     )
 }

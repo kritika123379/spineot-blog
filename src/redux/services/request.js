@@ -14,12 +14,22 @@ const requestWithToken = (options) => {
     // if(options.method === 'POST' || options.method === 'PUT' || options.method === 'DELETE' || options.method === 'PATCH'){
 
     // }
+    console.log('options',options);
     const client = axios.create({
         baseURL: Config.API_URL,
         headers: {
             'Content-Type': 'application/json',
             "Accept": "application/json",
         },
+        //  body: JSON.stringify(options.params)
+        params: JSON.stringify([{ "title": "Blog 2",
+        "_id": "my id",
+        "description": "Testing of blog 2",
+        "picture": "https://d24cgw3uvb9a9h.cloudfront.net/static/93994/image/Zoom_Blue_Logo.png",
+        "user": "kritika madaan",
+        "createdAt": "2020-06-21T19:25:33.461Z",
+        "updatedAt": "2020-06-21T19:25:33.461Z"
+    }])
     });
     // if(!!localStorage.getItem('businessId')){
     //     axios.defaults.header['x-peymynt-business-id'] = localStorage.getItem('businessId')
